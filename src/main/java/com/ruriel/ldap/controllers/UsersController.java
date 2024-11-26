@@ -6,12 +6,7 @@ import javax.naming.InvalidNameException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import com.ruriel.ldap.dto.ResponseDTO;
 import com.ruriel.ldap.model.User;
 import com.ruriel.ldap.repository.UserService;
@@ -22,7 +17,7 @@ public class UsersController {
 	@Autowired
 	UserService service;
 
-	@RequestMapping(value = "/Users", method = RequestMethod.POST)
+	@PostMapping("/Users")
 	public ResponseDTO saveUser(@Valid @RequestBody User user) {
 		User ret;
 		try {
@@ -41,7 +36,7 @@ public class UsersController {
 		return dto;
 	}
 
-	@RequestMapping(value = "/Users", method = RequestMethod.GET)
+	@GetMapping("/Users")
 	public ResponseDTO getUsers() {
 		ResponseDTO dto = new ResponseDTO();
 		List<User> users = service.findAll();
@@ -58,8 +53,8 @@ public class UsersController {
 		return dto;
 	}
 
-	@RequestMapping(value = "/Users/{uid}", method = RequestMethod.GET)
-	public ResponseDTO getUser(@PathVariable(value = "uid") String uid) {
+	@GetMapping("/Users/{uid}")
+	public ResponseDTO getUser(@PathVariable String uid) {
 		ResponseDTO dto = new ResponseDTO();
 		User user = service.findByUid(uid);
 		if (user == null) {
@@ -71,8 +66,8 @@ public class UsersController {
 		return dto;
 	}
 
-	@RequestMapping(value = "/Users/{uid}", method = RequestMethod.DELETE)
-	public ResponseDTO deleteUser(@PathVariable(value = "uid") String uid) {
+	@DeleteMapping("/Users/{uid}")
+	public ResponseDTO deleteUser(@PathVariable String uid) {
 		ResponseDTO dto = new ResponseDTO();
 		User user = service.findByUid(uid);
 		if (user == null)

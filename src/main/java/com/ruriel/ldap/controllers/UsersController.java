@@ -28,9 +28,9 @@ public class UsersController {
 		}
 		ResponseDTO dto = new ResponseDTO();
 		if (ret == null)
-			dto.setMessage("Não foi possível persistir o usuário.");
+			dto.setMessage("Unable to persist user.");
 		else {
-			dto.setMessage("Usuário persistido com sucesso.");
+			dto.setMessage("User persisted successfully.");
 			dto.addUser(ret);
 		}
 		return dto;
@@ -41,13 +41,13 @@ public class UsersController {
 		ResponseDTO dto = new ResponseDTO();
 		List<User> users = service.findAll();
 		if (users == null || users.size() == 0) {
-			dto.setMessage("Nenhum usuárioo encontrado");
+			dto.setMessage("No users found");
 		} else {
 			int size = users.size();
 			if (size == 1)
-				dto.setMessage("Foi encontrado 1 usuário.");
+				dto.setMessage("1 user found.");
 			else
-				dto.setMessage("Foram encontrados " + users.size() + " usuários.");
+				dto.setMessage("Found " + users.size() + " users.");
 			dto.setUsers(users);
 		}
 		return dto;
@@ -58,9 +58,9 @@ public class UsersController {
 		ResponseDTO dto = new ResponseDTO();
 		User user = service.findByUid(uid);
 		if (user == null) {
-			dto.setMessage("Nenhum usuário encontrado.");
+			dto.setMessage("No users found.");
 		} else {
-			dto.setMessage("Usuário encontrado com sucesso.");
+			dto.setMessage("User found successfully.");
 			dto.addUser(user);
 		}
 		return dto;
@@ -71,10 +71,10 @@ public class UsersController {
 		ResponseDTO dto = new ResponseDTO();
 		User user = service.findByUid(uid);
 		if (user == null)
-			dto.setMessage("Nenhum usuário encontrado.");
+			dto.setMessage("No users found.");
 		else {
 			service.delete(uid);
-			dto.setMessage("Usuário removido.");
+			dto.setMessage("User removed.");
 		}
 		return dto;
 	}

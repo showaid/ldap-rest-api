@@ -5,27 +5,26 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.ruriel.ldap.model.User;
 
 @JsonInclude(Include.NON_NULL)
 public class ResponseDTO {
 
 	private String message;
-	private List<User> users = new ArrayList<User>();
+	private List<UserDTO> users = new ArrayList<UserDTO>();
 	public String getMessage() {
 		return message;
 	}
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public List<User> getUsers() {
+	public List<UserDTO> getUsers() {
 		return users;
 	}
-	public void setUsers(List<User> users) {
+	public void setUsers(List<UserDTO> users) {
 		this.users = users;
 	}
 	
-	public void addUser(User user) {
+	public void addUser(UserDTO user) {
 		this.users.add(user);
 	}
 	
